@@ -1,9 +1,63 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Favorite food" value="Sushi">
-  </mat-form-field>
+<mat-card class="example-card">
+	<form class="example-form">
+		<!-- Name, Surname -->
+		<div>
+			<mat-form-field class="example-half-width">
+				<input #name matInput placeholder="Name" [formControl]="controlName" required>
+        <mat-error *ngIf="controlName.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Leave a comment"></textarea>
-  </mat-form-field>
-</form>
+      <mat-form-field class="example-half-width">
+        <input #surname matInput placeholder="Surname"[formControl]="controlSurname" required>
+        <mat-error *ngIf="controlSurname.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Name, Surname -->
+
+    <!-- Birthday, Email -->
+    <div>
+      <mat-form-field class="example-half-width">
+        <input #date matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Insert your birthday">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <input #email matInput placeholder="Email" [formControl]="controlEmail" required>
+        <mat-error *ngIf="controlEmail.hasError('email') && !controlEmail.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="controlEmail.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Birthday -->
+
+    <!-- User, Password -->
+    <div>
+      <mat-form-field class="example-half-width">
+        <input #user matInput placeholder="User" [formControl]="controlUser" required>
+        <mat-error *ngIf="controlUser.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <input #password matInput type="password" placeholder="Password" [formControl]="controlPassword" required>
+        <mat-error *ngIf="controlPassword.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- User, Password -->
+
+    <!-- Submit -->
+    <button mat-raised-button color="primary" (click)="onSubmit(name, surname, date, email, user, password)">Submit</button>
+    <!-- Submit -->
+	</form>
+</mat-card>
