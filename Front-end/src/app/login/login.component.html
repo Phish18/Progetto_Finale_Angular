@@ -1,0 +1,25 @@
+<mat-card class="example-card">
+	<form class="example-form">
+    <!-- User, Password -->
+    <div>
+      <mat-form-field class="example-half-width">
+        <input #user matInput placeholder="User" [formControl]="controlUser" required>
+        <mat-error *ngIf="controlUser.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <input #password matInput type="password" placeholder="Password" [formControl]="controlPassword" required>
+        <mat-error *ngIf="controlPassword.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- User, Password -->
+
+    <!-- Submit -->
+    <button mat-raised-button color="primary" (click)="onSubmit(user, password)">Submit</button>
+    <!-- Submit -->
+	</form>
+</mat-card>

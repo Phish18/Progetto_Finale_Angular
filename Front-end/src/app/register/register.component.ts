@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -33,18 +32,37 @@ export class RegisterComponent implements OnInit {
     Validators.required
   ]);
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
 
-   /*myFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  }*/
+nome: string;
+surname: string;
+date: string;
+email: string;
+user: string;
+password: string;
 
   onSubmit(name : HTMLInputElement, surname: HTMLInputElement, date: HTMLInputElement, email: HTMLInputElement, user: HTMLInputElement, password: HTMLInputElement){
-    //nome = name.value;
+    this.nome = name.value;
+    this.surname = surname.value;
+    this.date = date.value;
+    this.email = email.value;
+    this.user = user.value;
+    this.password = password.value;
+
+    //this.nome + this.surname + this.date + this.email + this.user + this.password
+    this.http.post('https://node21.codenvy.io:34027/register',
+      {
+        nome : this.nome,
+        cognome : this.surname,
+        email : this.email,
+        data_nascita : this.date,
+        username : this.user,
+        password : this.password
+      }
+    ).subscribe((data)=> { console.log(data)} );
+
   }
 }

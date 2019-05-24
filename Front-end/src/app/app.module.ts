@@ -1,11 +1,8 @@
 //Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
-//Components
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
 
 //Routing
 import { RouterModule, Routes } from '@angular/router';
@@ -21,9 +18,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
+//Components
+import { AppComponent } from './app.component';
+import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+
 const appRoutes: Routes = [
   { path: '', component: RegisterComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
@@ -31,7 +35,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -50,7 +55,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
