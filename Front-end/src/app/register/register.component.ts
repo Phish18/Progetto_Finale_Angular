@@ -37,14 +37,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-nome: string;
-surname: string;
-date: string;
-email: string;
-user: string;
-password: string;
+  nome: string;
+  surname: string;
+  date: string;
+  email: string;
+  user: string;
+  password: string;
 
-  onSubmit(name : HTMLInputElement, surname: HTMLInputElement, date: HTMLInputElement, email: HTMLInputElement, user: HTMLInputElement, password: HTMLInputElement){
+  onSubmit(name: HTMLInputElement, surname: HTMLInputElement, date: HTMLInputElement, email: HTMLInputElement, user: HTMLInputElement, password: HTMLInputElement) {
     this.nome = name.value;
     this.surname = surname.value;
     this.date = date.value;
@@ -53,16 +53,19 @@ password: string;
     this.password = password.value;
 
     //this.nome + this.surname + this.date + this.email + this.user + this.password
-    this.http.post('https://node21.codenvy.io:34027/register',
+    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/register',
       {
-        nome : this.nome,
-        cognome : this.surname,
-        email : this.email,
-        data_nascita : this.date,
-        username : this.user,
-        password : this.password
+        nome: this.nome,
+        cognome: this.surname,
+        email: this.email,
+        data_nascita: this.date,
+        username: this.user,
+        password: this.password
       }
-    ).subscribe((data)=> { console.log(data)} );
+    ).subscribe((data) => {
+      console.log(data);
+      true ? console.error(true) : console.error(false)
+    });
 
   }
 }

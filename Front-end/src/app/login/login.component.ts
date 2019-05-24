@@ -16,13 +16,23 @@ export class LoginComponent implements OnInit {
   controlPassword = new FormControl('', [
     Validators.required
   ]);
-  constructor() { }
+
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  onSubmit(username : HTMLInputElement, password : HTMLInputElement){
-    console.log(username.value)
+  onSubmit(user: HTMLInputElement, pass: HTMLInputElement) {
+
+    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/login',
+      {
+        username: user.value,
+        password: pass.value
+      }
+    ).subscribe((data) => {
+      console.log(data)
+    });
+
   }
 
 }
