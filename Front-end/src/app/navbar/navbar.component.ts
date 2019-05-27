@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+logged : string;
+
+  constructor() {
+    this.logged = localStorage.getItem('logged');
+  }
 
   ngOnInit() {
   }
