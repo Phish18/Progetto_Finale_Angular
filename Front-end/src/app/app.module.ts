@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+//Maps
+import { AgmCoreModule } from '@agm/core';
 
 //Routing
 import { RouterModule, Routes } from '@angular/router';
@@ -23,11 +25,13 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { MappaComponent } from './mappa/mappa.component';
 
 const appRoutes: Routes = [
   { path: '', component: RegisterComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'map', component: MappaComponent }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
@@ -36,13 +40,17 @@ const appRoutes: Routes = [
     AppComponent,
     RegisterComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    MappaComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCzUI8LYmnHPyFrtRT8Q8IEREZfOygUl-U'
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -56,7 +64,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

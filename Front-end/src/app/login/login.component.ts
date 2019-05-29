@@ -24,15 +24,21 @@ export class LoginComponent implements OnInit {
 
   onSubmit(user: HTMLInputElement, pass: HTMLInputElement) {
 
-    this.http.post<boolean>('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/login',
+    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/login',
       {
         username: user.value,
         password: pass.value
       }
     ).subscribe((data) => {
-      localStorage.setItem('logged', data.toString());
+      if(data.toString() == "true"){
+        localStorage.setItem('username', user.value);
+        localStorage.setItem('logged', data.toString());
+        alert(data.toString());
+      }
     });
 
   }
+
+  
 
 }
