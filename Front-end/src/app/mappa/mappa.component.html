@@ -1,6 +1,5 @@
 <agm-map [latitude]="lat" [longitude]="lon">
   <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.pos.lat" [longitude]="marker.pos.lon">
-    <agm-info-window><app-infowindows [id]="_id"></app-infowindows></agm-info-window>
   </agm-marker>
 </agm-map>
