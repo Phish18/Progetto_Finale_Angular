@@ -37,7 +37,7 @@ export class MappaComponent implements OnInit {
   }
 
   getMonopattini() {
-    this.http.get<Monopattino>('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/getMonopattini').subscribe(result => {
+    this.http.get<Monopattino[]>('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/getMonopattini').subscribe(result => {
       this.markers = result;
     });
   }
