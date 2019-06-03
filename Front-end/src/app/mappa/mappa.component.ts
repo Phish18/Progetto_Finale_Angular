@@ -14,7 +14,16 @@ export class MappaComponent implements OnInit {
   public lon;
   markers: Monopattino[];
 
-  constructor(public http : HttpClient) {
+  //Icon position scooters
+  iconScooters = {
+    url: 'assets/markerbici.png',
+    scaledSize: {
+      width: 30,
+      height: 30
+    }
+  };
+
+  constructor(public http: HttpClient) {
     this.getLocation();
     this.getMonopattini();
   }

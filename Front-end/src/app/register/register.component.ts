@@ -64,7 +64,6 @@ export class RegisterComponent implements OnInit {
       }
     ).subscribe((data) => {
       console.log(data);
-      true ? console.error(true) : console.error(false)
     });
 
   }

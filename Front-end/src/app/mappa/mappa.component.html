@@ -1,5 +1,8 @@
-<agm-map [latitude]="lat" [longitude]="lon">
-  <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
-  <agm-marker *ngFor="let marker of markers" [latitude]="marker.pos.lat" [longitude]="marker.pos.lon">
-  </agm-marker>
+<agm-map [latitude]="lat" [longitude]="lon" [zoom]="10">
+	<agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+	<agm-marker *ngFor="let marker of markers" [latitude]="marker.pos.lat" [longitude]="marker.pos.lon" [iconUrl]="iconScooters">
+		<agm-info-window [disableAutoPan]="false">
+      <app-info-windows [qr]="marker.qr"></app-info-windows>
+		</agm-info-window>
+	</agm-marker>
 </agm-map>
