@@ -8,24 +8,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NavbarComponent implements OnInit {
 
-logged : boolean;
+  logged: boolean;
 
-  constructor(public http : HttpClient) {
+  constructor(public http: HttpClient) {
     this.logged = localStorage.getItem('logged') === "true" ? true : false;
   }
 
   ngOnInit() {
   }
 
-  logout() : void {
+  logout(): void {
     this.logged = false;
     this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/logout',
       {
         username: localStorage.getItem('username')
       })
       .subscribe((data) => {
-      localStorage.setItem('logged', data.toString());
-    });
+        localStorage.setItem('logged', data.toString());
+      });
   }
 
 }

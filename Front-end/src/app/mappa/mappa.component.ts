@@ -24,8 +24,12 @@ export class MappaComponent implements OnInit {
   };
 
   constructor(public http: HttpClient) {
-    this.getLocation();
+    if (localStorage.getItem('prenotato')) {
+    this.getLocation(); 
     this.getMonopattini();
+    }else{
+      alert('Hai già prenotato una bici!');
+    }
   }
 
   ngOnInit() {

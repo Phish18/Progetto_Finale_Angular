@@ -9,18 +9,25 @@ import { Observable } from 'rxjs';
 })
 export class InfoWindowsComponent implements OnInit {
 
-@Input() qr: string;
+  @Input() qr: string;
 
-  constructor(public http : HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
 
   prenota() {
-    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/prenota',
-      { qr: this.qr }
-    ).subscribe((data) => {
-      console.log(data);
-    });
+    if (localStorage.getItem('prenotato')) {
+      this.http.put('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/prenota',
+        {
+          qr: this.qr,
+          username: localStorage.getItem('username')
+        }
+      ).subscribe((data) => {
+        if (data) {
+          localStorage.setItem('prenotato', this.qr)
+        }
+      });
+    }
   }
 }
