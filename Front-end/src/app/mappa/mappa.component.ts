@@ -24,10 +24,10 @@ export class MappaComponent implements OnInit {
   };
 
   constructor(public http: HttpClient) {
-    if (localStorage.getItem('prenotato')) {
-    this.getLocation(); 
-    this.getMonopattini();
-    }else{
+    if (localStorage.getItem('prenotato') == null) {
+      this.getLocation();
+      this.getMonopattini();
+    } else {
       alert('Hai già prenotato una bici!');
     }
   }
