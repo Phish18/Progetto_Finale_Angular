@@ -2,8 +2,8 @@
   <mat-toolbar-row>
     <span>Monopattinilandia</span>
     <span class="example-spacer"></span>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" *ngIf="!logged" routerLink="/login">account_circle</mat-icon>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" *ngIf="logged" (click)="logout()">exit_to_app</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" *ngIf="getLogged() == 'false' || getLogged() == null" routerLink="/login">account_circle</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" *ngIf="getLogged() == 'true'" (click)="logout()">exit_to_app</mat-icon>
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon" routerLink="/map">explore</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>

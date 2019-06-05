@@ -4,22 +4,20 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-info-windows',
-  templateUrl: './info-windows.component.html',
-  styleUrls: ['./info-windows.component.css']
+  selector: 'app-monopattino-prenotato',
+  templateUrl: './monopattino-prenotato.component.html',
+  styleUrls: ['./monopattino-prenotato.component.css']
 })
-export class InfoWindowsComponent implements OnInit {
-
+export class MonopattinoPrenotatoComponent implements OnInit {
   @Input() qr: string;
-
   constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  prenota() {
-    if (localStorage.getItem('prenotato') == null) {
-      this.http.put(environment.url + 'prenota',
+  rilascia() {
+    if (localStorage.getItem('prenotato')) {
+      this.http.put(environment.url + 'rilascia',
         {
           qr: this.qr
         },
@@ -28,11 +26,12 @@ export class InfoWindowsComponent implements OnInit {
         }
       ).subscribe((data) => {
         if (data) {
-          localStorage.setItem('prenotato', this.qr);
+          localStorage.setItem('prenotato', null);
         }
       });
-    }else{
-      alert('Hai già prenotato')
+    } else {
+      alert('Non hai prenotato')
     }
   }
 }
+

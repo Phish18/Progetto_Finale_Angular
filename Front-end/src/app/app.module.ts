@@ -27,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { MappaComponent } from './mappa/mappa.component';
 import { InfoWindowsComponent } from './info-windows/info-windows.component';
+import { MonopattinoPrenotatoComponent } from './monopattino-prenotato/monopattino-prenotato.component';
 
 const appRoutes: Routes = [
   { path: '', component: RegisterComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     LoginComponent,
     MappaComponent,
-    InfoWindowsComponent
+    InfoWindowsComponent,
+    MonopattinoPrenotatoComponent
   ],
   imports: [
     RouterModule.forRoot(

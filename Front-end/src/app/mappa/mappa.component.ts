@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Monopattino } from './monopattino.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-mappa',
@@ -24,11 +25,11 @@ export class MappaComponent implements OnInit {
   };
 
   constructor(public http: HttpClient) {
-    if (localStorage.getItem('prenotato') == null) {
+    if (localStorage.getItem('logged') == 'true') {
       this.getLocation();
       this.getMonopattini();
     } else {
-      alert('Hai già prenotato una bici!');
+      alert('Accesso negato!');
     }
   }
 
@@ -50,9 +51,16 @@ export class MappaComponent implements OnInit {
   }
 
   getMonopattini() {
-    this.http.get<Monopattino[]>('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/getMonopattini').subscribe(result => {
+    this.http.get<Monopattino[]>(environment.url + 'getMonopattini',
+    {
+      withCredentials: true
+    }).subscribe(result => {
       this.markers = result;
     });
+  }
+
+  localStorageGet(key: string): string{
+    return localStorage.getItem(key);
   }
 
 }

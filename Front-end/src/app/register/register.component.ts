@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
     this.password = password.value;
 
     //this.nome + this.surname + this.date + this.email + this.user + this.password
-    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/register',
+    this.http.post(environment.url + 'register',
       {
         nome: this.nome,
         cognome: this.surname,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -7,25 +8,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  logged: boolean;
-
   constructor(public http: HttpClient) {
-    this.logged = localStorage.getItem('logged') === "true" ? true : false;
   }
 
   ngOnInit() {
+    localStorage.setItem('logged', 'false');
   }
 
   logout(): void {
-    this.logged = false;
-    this.http.post('https://8080-acee52e1-e7c3-463c-a1c6-4b499a21912f.ws-eu0.gitpod.io/logout',
-      {
-        username: localStorage.getItem('username')
+    if (localStorage.getItem('logged') == 'true') {
+      this.http.get(environment.url + 'logout', {
+        withCredentials: true
       })
-      .subscribe((data) => {
-        localStorage.setItem('logged', data.toString());
-      });
+        .subscribe((data) => {
+          if (!data) {
+            localStorage.setItem('logged', 'false');
+            alert("Succesfully logout!");
+          }
+        });
+    }
+  }
+
+  getLogged(): string {
+    return localStorage.getItem('logged');
   }
 
 }
